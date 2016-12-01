@@ -2,9 +2,16 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var http = require('http');
+var _ = require('lodash');
+var schedule = require('node-schedule');
+var fs = require('fs');
+var twilioConfig = JSON.parse(fs.readFileSync('./config/twilioConfig.json', 'utf8'));
+var mysqlConfig = JSON.parse(fs.readFileSync('./config/mysqlConfig.json', 'utf8'));
+var twilio = require('twilio')(twilioConfig.accountSid, twilioConfig.authToken);
 
 var app = express();
 var port = 8080;
+var sessions = [];
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
