@@ -30,9 +30,9 @@ var generateToken = function () {
     return text;
 }
 
-var verifySession = function (username, token, userId, _, sessions) {
+var verifySession = function (username, token, user_id, _, sessions) {
     var session = _.find(sessions, function (singleSession) {
-        return singleSession.username == username && singleSession.token == token && singleSession.userId == userId;
+        return singleSession.username == username && singleSession.token == token && singleSession.user_id == user_id;
     });
     if (session) {
         return true;

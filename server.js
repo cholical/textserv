@@ -40,9 +40,9 @@ app.post('/api/login', function (req, res) {
 app.post('/api/getDashboard', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var userId = req.body.userId;
-	if (tools.verifySession(username, token, userId, _, sessions)) {
-		dashboard.getDashboard(userId, sql, _, res);
+	var user_id = req.body.user_id;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		dashboard.getDashboard(user_id, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
@@ -51,11 +51,11 @@ app.post('/api/getDashboard', function (req, res) {
 app.post('/api/createList', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var userId = req.body.userId;
-	var listName = req.body.listName;
+	var user_id = req.body.user_id;
+	var list_name = req.body.list_name;
 	var listDescription = req.body.listDescription;
-	if (tools.verifySession(username, token, userId, _, sessions)) {
-		dashboard.createList(userId, listName, listDescription, sql, _, res);
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		dashboard.createList(user_id, list_name, listDescription, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
@@ -64,17 +64,25 @@ app.post('/api/createList', function (req, res) {
 app.post('/api/deleteList', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var userId = req.body.userId;
-	var listId = req.body.listId;
-	if (tools.verifySession(username, token, userId, _, sessions)) {
-		dashboard.deleteList(userId, listId, sql, _, res);
+	var user_id = req.body.user_id;
+	var list_id = req.body.list_id;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		dashboard.deleteList(user_id, list_id, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
 });
 
 app.post('/api/openList', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var user_id = req.body.user_id;
+	var list_id = req.body.list_id;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		dashboard.openList(user_id, list_id, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/addPerson', function (req, res) {

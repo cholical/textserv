@@ -1,4 +1,4 @@
-var getDashboard = function (userId, sql, _, res) {
+var getDashboard = function (user_id, sql, _, res) {
 	var query = "SELECT list_id, list_name, list_description FROM lists WHERE user_id = '" + userid + "';";
 	sql.query(query, function (err, recordset) {
 		console.log("Getting lists");
@@ -14,8 +14,8 @@ var getDashboard = function (userId, sql, _, res) {
 	});
 }
 
-var createList = function (userId, listName, listDescription, sql, _, res) {
-	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + listName + "', '" listDescription + "');";
+var createList = function (user_id, list_name, list_description, sql, _, res) {
+	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + list_name + "', '" list_description + "');";
 	sql.query(query, function (err, recordset) {
 		console.log("Adding new list");
 		if (err) {
@@ -29,8 +29,8 @@ var createList = function (userId, listName, listDescription, sql, _, res) {
 	});
 }
 
-var deleteList = function (userId, listId, sql, _, res) {
-	var query = "DELETE FROM lists WHERE list_id = '" + listId + "' AND user_id = '" + userId + "'; DELETE FROM listpeople WHERE list_id = '" + listId + "';";
+var deleteList = function (user_id, list_id, sql, _, res) {
+	var query = "DELETE FROM lists WHERE list_id = '" + list_id + "' AND user_id = '" + user_id + "'; DELETE FROM listpeople WHERE list_id = '" + list_id + "';";
 	//Does not delete from the people table so it is possible for a person to not be in any list
 	sql.query(query, function (err, recordset) {
 		console.log("Deleting list");
@@ -45,6 +45,34 @@ var deleteList = function (userId, listId, sql, _, res) {
 	});
 }
 
+var openList = function (user_id, list_id, sql, _, res) {
+	var firstQuery = "SELECT list_name, list_description FROM lists WHERE list_id = '" + list_id + "' AND user_id = '" + user_id + "';";
+	var secondQuery = "SELECT lists.list_id, people.person_id, people.first_name, people.last_name, people.number FROM lists INNER JOIN listpeople ON lists.list_id = listpeople.list_id INNER JOIN people ON listpeople.person_id = people.person_id WHERE lists.list_id = '" + list_id + "';";
+	sql.query(firstQuery, function (err, firstRecordset) {
+		console.log("Getting list name and description");
+		if (err) {
+			console.log(query);
+			console.log(err);
+		} else {
+			sql.query(secondQuery, function (err, secondRecordset) {
+				console.log("Getting people in list " + listid);
+				if (err) {
+					console.log(query);
+					console.log(err);
+				} else {
+					res.send({
+						status: 200,
+						list_name: firstRecordset[0].list_name,
+						list_description: firstRecordset[0].list_description,
+						people: secondRecordset
+					});
+				}
+			});
+		}
+	});
+}
+
 module.exports.getDashboard = getDashboard;
 module.exports.createList = createList;
 module.exports.deleteList = deleteList;
+module.exports.openList = openList;

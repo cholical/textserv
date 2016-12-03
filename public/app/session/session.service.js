@@ -10,14 +10,14 @@
   	var sessionToken = undefined;
   	var firstName = undefined;
   	var lastName = undefined;
-  	var userId = undefined;
+  	var user_id = undefined;
 
 	var saveSession = function (username, data) {
 		sessionUsername = username;
 		sessionToken = data.token;
 		firstName = data.firstName;
 		lastName = data.lastName;
-		userId = data.userId;
+		user_id = data.user_id;
 		var cookieValues = {
 			username: username,
 			token: token
@@ -36,7 +36,7 @@
     	sessionToken: sessionToken,
     	firstName: firstName,
     	lastName: lastName,
-    	userId: userId,
+    	user_id: user_id,
     	saveSession: saveSession
     };
 

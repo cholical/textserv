@@ -8,7 +8,7 @@
 
   	var getDashboard = function () {
   		var dashboardParams = {
-  			userId: sessionSvc.userId
+  			user_id: sessionSvc.user_id
   		}
   		return $http.post("/api/getDashboard", dashboardParams).then(function (response) {
   			return response.data;
