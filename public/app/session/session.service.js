@@ -4,7 +4,7 @@
   var app;
   app = angular.module('textserv');
 
-  app.factory('sessionSvc', ['$http', '$log', '$cookies', function sessionSvc($http, $log, $cookies) {
+  app.factory('sessionSvc', ['$cookies', function sessionSvc($cookies) {
 
   	var sessionUsername = undefined;
   	var sessionToken = undefined;

@@ -3,9 +3,9 @@
   'use strict';
   var app = angular.module('textserv', ['ui.router', 'ui.bootstrap', 'ui.bootstrap.modal', 'ngCookies']);
 
-  app.config(['$stateProvider', '$urlRouterProvider', configRoutes]);
+  app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', configRoutes]);
 
-  function configRoutes ($stateProvider, $urlRouterProvider) {
+  function configRoutes ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
       .state('home', {
         url: '/home',
@@ -34,6 +34,8 @@
       })
 
     $urlRouterProvider.otherwise('/home');
+
+    $httpProvider.interceptors.push('sessionInjector');
 
     // $locationProvider.html5Mode({
     //   enabled: true
