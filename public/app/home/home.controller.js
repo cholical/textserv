@@ -14,7 +14,7 @@
 			homeSvc.login($scope.username, $scope.password).then(function (data) {
 				if (data.status == 200) {
 					$scope.loginFailed = false;
-					sessionSvc.saveSession($scope.username, data.token);
+					sessionSvc.saveSession($scope.username, data);
 					$state.go("dashboard");
 				} else {
 					console.log("Login Failed");

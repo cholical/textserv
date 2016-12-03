@@ -3,7 +3,7 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 	var passwordHash = crypto.createHash('md5').update(passwordSalt).digest('hex');
 	var escapedUsername = tools.escapeString(username);
 	var escapedPassword = tools.escapeString(passwordHash);
-	var query = ("SELECT * FROM users WHERE username = '" + escapedUsername + "' AND password = '" + escapedPassword + "';");
+	var query = ("SELECT user_id, first_name, last_name FROM users WHERE username = '" + escapedUsername + "' AND password = '" + escapedPassword + "';");
 	sql.query(query, function (err, recordset) {
 		console.log("Login attempted");
 		if (err) {
@@ -16,12 +16,16 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 				var token = tools.generateToken();
 				res.send({
 					status: 200,
-					token: token
+					token: token,
+					userId: recordset[0].user_id,
+					firstName: recordset[0].firstName,
+					lastName: recordset[0].lastName
 				});
 				_.remove(sessions, function (session) {
 					return session.username == username;
 				});
 				var session = {
+					userId: recordset[0].user_id;
 					username: username,
 					token: token
 				}
@@ -37,4 +41,14 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 	});
 }
 
+var logout = function (username, token, _, sessions) {
+	_.remove(sessions, function (session) {
+		return session.username == username && session.token == token;
+	});
+	res.send({
+		status: 200
+	});
+}
+
 module.exports.login = login;
+module.exports.logout = logout;

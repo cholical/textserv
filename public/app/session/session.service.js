@@ -8,10 +8,16 @@
 
   	var sessionUsername = undefined;
   	var sessionToken = undefined;
+  	var firstName = undefined;
+  	var lastName = undefined;
+  	var userId = undefined;
 
-	var saveSession = function (username, token) {
+	var saveSession = function (username, data) {
 		sessionUsername = username;
-		sessionToken = token;
+		sessionToken = data.token;
+		firstName = data.firstName;
+		lastName = data.lastName;
+		userId = data.userId;
 		var cookieValues = {
 			username: username,
 			token: token
@@ -28,6 +34,9 @@
     return {
     	sessionUsername: sessionUsername,
     	sessionToken: sessionToken,
+    	firstName: firstName,
+    	lastName: lastName,
+    	userId: userId,
     	saveSession: saveSession
     };
 

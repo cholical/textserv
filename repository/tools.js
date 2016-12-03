@@ -30,5 +30,17 @@ var generateToken = function () {
     return text;
 }
 
+var verifySession = function (username, token, userId, _, sessions) {
+    var session = _.find(sessions, function (singleSession) {
+        return singleSession.username == username && singleSession.token == token && singleSession.userId == userId;
+    });
+    if (session) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 module.exports.escapeString = escapeString;
 module.exports.generateToken = generateToken;
+module.exports.verifySession = verifySession;

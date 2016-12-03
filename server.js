@@ -38,15 +38,39 @@ app.post('/api/login', function (req, res) {
 });
 
 app.post('/api/getDashboard', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var userId = req.body.userId;
+	if (tools.verifySession(username, token, userId, _, sessions)) {
+		dashboard.getDashboard(userId, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/createList', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var userId = req.body.userId;
+	var listName = req.body.listName;
+	var listDescription = req.body.listDescription;
+	if (tools.verifySession(username, token, userId, _, sessions)) {
+		dashboard.createList(userId, listName, listDescription, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/deleteList', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var userId = req.body.userId;
+	var listId = req.body.listId;
+	if (tools.verifySession(username, token, userId, _, sessions)) {
+		dashboard.deleteList(userId, listId, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/openList', function (req, res) {
@@ -70,7 +94,9 @@ app.post('/api/getMessages', function (req, res) {
 });
 
 app.post('/api/logout', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	home.logout(username, token, _, sessions);
 });
 
 app.get('*', function(req, res) {
