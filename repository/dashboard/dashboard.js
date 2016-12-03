@@ -14,8 +14,10 @@ var getDashboard = function (user_id, sql, _, res) {
 	});
 }
 
-var createList = function (user_id, list_name, list_description, sql, _, res) {
-	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + list_name + "', '" list_description + "');";
+var createList = function (user_id, list_name, list_description, tools, sql, _, res) {
+	var escapedListName = tools.escapeString(list_name);
+	var escapedListDescription = tools.escapeString(list_description);
+	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + escapedListName + "', '" escapedListDescription + "');";
 	sql.query(query, function (err, recordset) {
 		console.log("Adding new list");
 		if (err) {
@@ -47,13 +49,13 @@ var deleteList = function (user_id, list_id, sql, _, res) {
 
 var openList = function (user_id, list_id, sql, _, res) {
 	var firstQuery = "SELECT list_name, list_description FROM lists WHERE list_id = '" + list_id + "' AND user_id = '" + user_id + "';";
-	var secondQuery = "SELECT lists.list_id, people.person_id, people.first_name, people.last_name, people.number FROM lists INNER JOIN listpeople ON lists.list_id = listpeople.list_id INNER JOIN people ON listpeople.person_id = people.person_id WHERE lists.list_id = '" + list_id + "';";
 	sql.query(firstQuery, function (err, firstRecordset) {
 		console.log("Getting list name and description");
 		if (err) {
 			console.log(query);
 			console.log(err);
 		} else {
+			var secondQuery = "SELECT lists.list_id, people.person_id, people.first_name, people.last_name, people.number FROM lists INNER JOIN listpeople ON lists.list_id = listpeople.list_id INNER JOIN people ON listpeople.person_id = people.person_id WHERE lists.list_id = '" + list_id + "';";
 			sql.query(secondQuery, function (err, secondRecordset) {
 				console.log("Getting people in list " + listid);
 				if (err) {

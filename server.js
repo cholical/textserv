@@ -55,7 +55,7 @@ app.post('/api/createList', function (req, res) {
 	var list_name = req.body.list_name;
 	var listDescription = req.body.listDescription;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
-		dashboard.createList(user_id, list_name, listDescription, sql, _, res);
+		dashboard.createList(user_id, list_name, listDescription, tools, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
@@ -86,11 +86,31 @@ app.post('/api/openList', function (req, res) {
 });
 
 app.post('/api/addPerson', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var user_id = req.body.user_id;
+	var list_id = req.body.list_id;
+	var first_name = req.body.first_name;
+	var last_name = req.body.last_name;
+	var number = req.body.number;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		list.addPerson(list_id, first_name, last_name, number, tools, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
-app.post('/api/removePerson', function (req, res) {
-	
+app.post('/api/deletePerson', function (req, res) {
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var user_id = req.body.user_id;
+	var list_id = req.body.list_id;
+	var person_id = req.body.person_id;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		list.deletePerson(list_id, person_id, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/sendMessage', function (req, res) {
@@ -98,7 +118,14 @@ app.post('/api/sendMessage', function (req, res) {
 });
 
 app.post('/api/getMessages', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var user_id = req.body.user_id;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		messages.getMessages(user_id, sql, _, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/logout', function (req, res) {
