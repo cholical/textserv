@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="home-title">
+                TextServ
+            </div>
+            <div class="home-logo-container">
+                <i class="fa fa-comments" aria-hidden="true" id="home-logo"></i>
+            </div>
+            <div class="home-input">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    	<form ng-submit="login()">
+	                        <input class="form-control home-input-field-custom" type="text" placeholder="Username" ng-model="username">
+	                        <input class="form-control home-input-field-custom" type="password" placeholder="Password" ng-model="passowrd">
+	                        <div class="home-align-right-custom">
+	                            <button type="submit" class="btn btn-default">Login</button>
+	                        </div>
+	                    </form>
+	                    <div ng-show="loginFailed">
+	                    	Incorrect username and password combination
+	                    </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
