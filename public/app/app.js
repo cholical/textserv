@@ -1,7 +1,7 @@
 (function () {
 
   'use strict';
-  var app = angular.module('textserv', ['ui.router', 'ui.bootstrap', 'ui.bootstrap.modal']);
+  var app = angular.module('textserv', ['ui.router', 'ui.bootstrap', 'ui.bootstrap.modal', 'ngCookies']);
 
   app.config(['$stateProvider', '$urlRouterProvider', configRoutes]);
 
@@ -41,8 +41,20 @@
 
   };
 
-  app.run(['$state', function ($state) {
-    
+  app.run(['$rootScope', '$timeout', '$state', '$cookies', 'sessionSvc', function ($rootScope, $timeout, $state, $cookies, sessionSvc) {
+    var credentials = $cookies.get('credentials');
+    if (credentials) {
+      console.log("Cookie found");
+      sessionSvc.sessionUsername = credentials.username;
+      sessionSvc.sessionToken = credentials.token;
+    } else {
+      console.log("Cookie not found");
+      $timeout(function() {
+        //Not the best implementation, requires more research
+        $state.go('home');
+      });
+    }
+
   }]);
 
 }());

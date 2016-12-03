@@ -29,7 +29,9 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 				console.log("New session saved. Username: " + username + " and token " + token);
 			} else {
 				console.log("Login failed");
-				res.sendStatus(401);
+				res.send({
+					status: 401
+				});
 			}
 		}
 	});
