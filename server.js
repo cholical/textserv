@@ -20,6 +20,7 @@ sql.connect(function (err) {
 var tools = require('./repository/tools.js');
 var home = require('./repository/home/home.js');
 var dashboard = require('./repository/dashboard/dashboard.js');
+var twilioSend = require('./repository/dashboard/twilioSend.js');
 var list = require('./repository/list/list.js');
 var messages = require('./repository/messages/messages.js');
 
@@ -114,7 +115,16 @@ app.post('/api/deletePerson', function (req, res) {
 });
 
 app.post('/api/sendMessage', function (req, res) {
-	
+	var username = req.get("textserv-session-username");
+	var token = req.get("textserv-session-token");
+	var user_id = req.body.user_id;
+	var list_id = req.body.list_id;
+	var message_body = req.body.message_body;
+	if (tools.verifySession(username, token, user_id, _, sessions)) {
+		twilioSend.sendToList(list_id, user_id, body, tools, sql, _, twilio, res);
+	} else {
+		res.sendStatus(403);
+	}
 });
 
 app.post('/api/getMessages', function (req, res) {

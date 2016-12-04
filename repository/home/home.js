@@ -25,7 +25,7 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 					return session.username == username;
 				});
 				var session = {
-					userId: recordset[0].user_id;
+					userId: recordset[0].user_id,
 					username: username,
 					token: token
 				}

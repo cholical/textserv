@@ -17,7 +17,7 @@ var getDashboard = function (user_id, sql, _, res) {
 var createList = function (user_id, list_name, list_description, tools, sql, _, res) {
 	var escapedListName = tools.escapeString(list_name);
 	var escapedListDescription = tools.escapeString(list_description);
-	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + escapedListName + "', '" escapedListDescription + "');";
+	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + escapedListName + "', '" + escapedListDescription + "');";
 	sql.query(query, function (err, recordset) {
 		console.log("Adding new list");
 		if (err) {
