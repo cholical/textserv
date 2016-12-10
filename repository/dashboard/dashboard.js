@@ -7,7 +7,7 @@ var getDashboard = function (user_id, sql, _, res) {
 			console.log(err);
 			res.sendStatus(500);
 		} else {
-			console.log(recordset.item(0));
+			console.log(recordset);
 		}
 	});
 }
