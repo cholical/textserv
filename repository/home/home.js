@@ -17,7 +17,7 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 				res.send({
 					status: 200,
 					token: token,
-					userId: recordset[0].user_id,
+					user_id: recordset[0].user_id,
 					firstName: recordset[0].firstName,
 					lastName: recordset[0].lastName
 				});
@@ -25,7 +25,7 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 					return session.username == username;
 				});
 				var session = {
-					userId: recordset[0].user_id,
+					user_id: recordset[0].user_id,
 					username: username,
 					token: token
 				}

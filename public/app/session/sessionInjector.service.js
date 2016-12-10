@@ -8,10 +8,11 @@
 
   	var sessionInjector = {
       request: function(config) {
-        if (sessionSvc.sessionUsername) {
-          config.headers['textserv-session-username'] = sessionSvc.sessionUsername;
-          config.headers['textserv-session-token'] = sessionSvc.sessionToken;
-          console.log(sessionAdded);
+        if (sessionSvc.getSessionUsername()) {
+          config.headers['textserv-session-username'] = sessionSvc.getSessionUsername();
+          config.headers['textserv-session-token'] = sessionSvc.getSessionToken();
+          console.log(sessionSvc.getSessionUsername());
+          console.log(sessionSvc.getSessionToken());
         }
         return config;
       }

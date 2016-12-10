@@ -34,6 +34,8 @@ var verifySession = function (username, token, user_id, _, sessions) {
     var session = _.find(sessions, function (singleSession) {
         return singleSession.username == username && singleSession.token == token && singleSession.user_id == user_id;
     });
+    console.dir(sessions);
+    console.log(session);
     if (session) {
         return true;
     } else {

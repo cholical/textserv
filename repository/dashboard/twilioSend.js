@@ -51,4 +51,5 @@ var sendToList = function (list_id, user_id, message_body, tools, sql, _, twilio
 	});
 }
 
-module.exports.sendToList = sendToList
+module.exports.sendTestMessage = sendTestMessage;
+module.exports.sendToList = sendToList;

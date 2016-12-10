@@ -41,7 +41,10 @@ app.post('/api/login', function (req, res) {
 app.post('/api/getDashboard', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
+	console.log(username);
+	console.log(token);
 	var user_id = req.body.user_id;
+	console.log(user_id);
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
 		dashboard.getDashboard(user_id, sql, _, res);
 	} else {

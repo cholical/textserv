@@ -1,15 +1,13 @@
 var getDashboard = function (user_id, sql, _, res) {
-	var query = "SELECT list_id, list_name, list_description FROM lists WHERE user_id = '" + userid + "';";
+	var query = "SELECT list_id, list_name, list_description FROM lists WHERE user_id = '" + user_id + "';";
 	sql.query(query, function (err, recordset) {
 		console.log("Getting lists");
 		if (err) {
 			console.log(query);
 			console.log(err);
+			res.sendStatus(500);
 		} else {
-			res.send({
-				status: 200,
-				lists: recordset
-			});
+			console.log(recordset.item(0));
 		}
 	});
 }
@@ -17,7 +15,7 @@ var getDashboard = function (user_id, sql, _, res) {
 var createList = function (user_id, list_name, list_description, tools, sql, _, res) {
 	var escapedListName = tools.escapeString(list_name);
 	var escapedListDescription = tools.escapeString(list_description);
-	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + userid + "', '" + escapedListName + "', '" + escapedListDescription + "');";
+	var query = "INSERT INTO lists (user_id, list_name, list_description) VALUES ('" + user_id + "', '" + escapedListName + "', '" + escapedListDescription + "');";
 	sql.query(query, function (err, recordset) {
 		console.log("Adding new list");
 		if (err) {
