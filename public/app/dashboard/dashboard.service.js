@@ -37,10 +37,23 @@
       });
     }
 
+    //###
+     var sendMessage = function (message_body) {
+      var params = {
+        message_body: message_body
+      }
+      console.log("check in dashboardSvc")
+      return $http.post("/api/sendMessage", params).then(function (response) {
+        return response.data;
+      });
+    }
+
     return {
     	getDashboard: getDashboard,
       deleteList: deleteList,
       createList: createList,
+      //###
+      sendMessage: sendMessage,
       logout: logout
     };
   }]);
