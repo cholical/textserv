@@ -1,0 +1,91 @@
+.side-bar-panel {
+	height: 100vh;
+	background-color: #061829;
+	border-right: 5px solid green;
+}
+
+.side-bar-title {
+	color: white;
+	text-align: center;
+    font-size: 40px;
+}
+
+.side-bar-hr {
+	border-color: green;
+}
+
+.side-bar-options {
+	padding: 10px;
+	color: white;
+	background-color: #061829;
+	font-size: 20px;
+	padding: 0;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+}
+
+.side-bar-options:hover {
+	background-color: #1e421e;
+	cursor: pointer;
+}
+
+.list-page-title {
+	margin: 20px;
+    padding: 10px;
+    font-size: 45px;
+    color: white;
+}
+
+.list-panel {
+	background-color: #061829;
+	border: 0px;
+	margin: 10px;
+	height: 300px;
+	border-radius: 0.5px;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.list-panel:hover {
+	cursor: pointer;
+}
+
+.list-panel-title {
+	color: white;
+    font-size: 25px;
+}
+
+.list-panel-description {
+	font-size: 18px;
+    color: white;
+}
+
+.list-panel {
+	background-color: #061829;
+	border: 0px;
+	margin: 10px;
+	height: 300px;
+	border-radius: 0.5px;
+	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.list-panel:hover {
+	cursor: pointer;
+}
+
+.list-panel-title {
+	color: white;
+    font-size: 25px;
+}
+
+.list-panel-description {
+	font-size: 18px;
+    color: white;
+}
+
+#list-panel-button-cont{
+	width: 90%;
+	bottom: 5px;
+	position: absolute;
+}
