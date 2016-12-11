@@ -18,17 +18,23 @@
 		firstName = data.firstName;
 		lastName = data.lastName;
 		user_id = data.user_id;
-		console.log(user_id);
 		var cookieValues = {
 			username: username,
-			token: data.token
+			token: data.token,
+			user_id: data.user_id,
+			firstName: firstName,
+			lastName: lastName
 		}
 		var expiration = new Date();
 		expiration.setFullYear(expiration.getFullYear() + 1);
 		var cookieOptions = {
 			expires: expiration
 		};
-		$cookies.put("credentials", cookieValues, cookieOptions);
+		$cookies.put("sessionUsername", sessionUsername, cookieOptions);
+		$cookies.put("sessionToken", sessionToken, cookieOptions);
+		$cookies.put("firstName", firstName, cookieOptions);
+		$cookies.put("lastName", lastName, cookieOptions);
+		$cookies.put("user_id", user_id, cookieOptions);
 		console.log("New Cookie Saved");
 	}  	
 
@@ -36,24 +42,63 @@
 		return user_id;
 	}
 
+	var setUserId = function (newUserId) {
+		user_id = newUserId;
+	}
+
 	var getSessionUsername = function () {
 		return sessionUsername;
+	}
+
+	var setSessionUsername = function (newSessionUsername) {
+		sessionUsername = newSessionUsername;
 	}
 
 	var getSessionToken = function () {
 		return sessionToken;
 	}
 
+	var setSessionToken = function (newSessionToken) {
+		sessionToken = newSessionToken;
+	}
+
+	var getFirstName = function () {
+		return firstName;
+	}
+
+	var setFirstName = function (newFirstName) {
+		firstName = newFirstName;
+	}
+
+	var getLastName = function () {
+		return lastName;
+	}
+
+	var setLastName = function (newLastName) {
+		lastName = newLastName;
+	}
+
+	var setCredentials = function () {
+		sessionUsername = $cookies.get('sessionUsername');
+      	sessionToken = $cookies.get('sessionToken');
+      	firstName = $cookies.get('firstName');
+      	lastName = $cookies.get('lastName');
+      	user_id = $cookies.get('user_id');
+	}
+
     return {
-    	sessionUsername: sessionUsername,
-    	getSessionUsername: getSessionUsername,
-    	getSessionToken: getSessionToken,
-    	sessionToken: sessionToken,
-    	firstName: firstName,
-    	lastName: lastName,
-    	user_id: user_id,
+    	saveSession: saveSession,
     	getUserId: getUserId,
-    	saveSession: saveSession
+    	setUserId: setUserId,
+    	getSessionUsername: getSessionUsername,
+    	setSessionUsername: setSessionUsername,
+    	getSessionToken: getSessionToken,
+    	setSessionToken: setSessionToken,
+    	getFirstName: getFirstName,
+    	setFirstName: setFirstName,
+    	getLastName: getLastName,
+    	setLastName: setLastName,
+    	setCredentials: setCredentials
     };
 
   }]);

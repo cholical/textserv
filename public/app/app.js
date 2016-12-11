@@ -44,11 +44,10 @@
   };
 
   app.run(['$rootScope', '$timeout', '$state', '$cookies', 'sessionSvc', function ($rootScope, $timeout, $state, $cookies, sessionSvc) {
-    var credentials = $cookies.get('credentials');
+    var credentials = $cookies.get('sessionToken');
     if (credentials) {
       console.log("Cookie found");
-      sessionSvc.sessionUsername = credentials.username;
-      sessionSvc.sessionToken = credentials.token;
+      sessionSvc.setCredentials();
     } else {
       console.log("Cookie not found");
       $timeout(function() {

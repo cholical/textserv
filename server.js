@@ -41,9 +41,8 @@ app.post('/api/login', function (req, res) {
 app.post('/api/getDashboard', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	console.log(username);
-	console.log(token);
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
+	console.log("user_id below");
 	console.log(user_id);
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
 		dashboard.getDashboard(user_id, sql, _, res);
@@ -55,7 +54,7 @@ app.post('/api/getDashboard', function (req, res) {
 app.post('/api/createList', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_name = req.body.list_name;
 	var listDescription = req.body.listDescription;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
@@ -68,7 +67,7 @@ app.post('/api/createList', function (req, res) {
 app.post('/api/deleteList', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
 		dashboard.deleteList(user_id, list_id, sql, _, res);
@@ -80,7 +79,7 @@ app.post('/api/deleteList', function (req, res) {
 app.post('/api/openList', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
 		dashboard.openList(user_id, list_id, sql, _, res);
@@ -92,7 +91,7 @@ app.post('/api/openList', function (req, res) {
 app.post('/api/addPerson', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	var first_name = req.body.first_name;
 	var last_name = req.body.last_name;
@@ -107,7 +106,7 @@ app.post('/api/addPerson', function (req, res) {
 app.post('/api/deletePerson', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	var person_id = req.body.person_id;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
@@ -120,7 +119,7 @@ app.post('/api/deletePerson', function (req, res) {
 app.post('/api/sendMessage', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	var message_body = req.body.message_body;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
@@ -133,7 +132,7 @@ app.post('/api/sendMessage', function (req, res) {
 app.post('/api/getMessages', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	var user_id = req.body.user_id;
+	var user_id = req.get("textserv-session-user-id");
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
 		messages.getMessages(user_id, sql, _, res);
 	} else {

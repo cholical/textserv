@@ -8,6 +8,10 @@ var getDashboard = function (user_id, sql, _, res) {
 			res.sendStatus(500);
 		} else {
 			console.log(recordset);
+			res.send({
+				status: 200,
+				lists: recordset
+			});
 		}
 	});
 }

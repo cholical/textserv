@@ -11,8 +11,7 @@
         if (sessionSvc.getSessionUsername()) {
           config.headers['textserv-session-username'] = sessionSvc.getSessionUsername();
           config.headers['textserv-session-token'] = sessionSvc.getSessionToken();
-          console.log(sessionSvc.getSessionUsername());
-          console.log(sessionSvc.getSessionToken());
+          config.headers['textserv-session-user-id'] = sessionSvc.getUserId();
         }
         return config;
       }
