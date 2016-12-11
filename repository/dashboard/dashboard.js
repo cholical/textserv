@@ -59,7 +59,7 @@ var openList = function (user_id, list_id, sql, _, res) {
 		} else {
 			var secondQuery = "SELECT lists.list_id, people.person_id, people.first_name, people.last_name, people.number FROM lists INNER JOIN listpeople ON lists.list_id = listpeople.list_id INNER JOIN people ON listpeople.person_id = people.person_id WHERE lists.list_id = '" + list_id + "';";
 			sql.query(secondQuery, function (err, secondRecordset) {
-				console.log("Getting people in list " + listid);
+				console.log("Getting people in list " + list_id);
 				if (err) {
 					console.log(query);
 					console.log(err);
