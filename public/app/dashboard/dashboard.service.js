@@ -7,17 +7,41 @@
   app.factory('dashboardSvc', ['$http', '$log', 'sessionSvc', function dashboardSvc($http, $log, sessionSvc) {
 
   	var getDashboard = function () {
-      var user_id = sessionSvc.getUserId();
-  		var dashboardParams = {
-  			user_id: user_id
-  		}
-  		return $http.post("/api/getDashboard", dashboardParams).then(function (response) {
+  		return $http.post("/api/getDashboard").then(function (response) {
   			return response.data;
   		});
   	}
 
+    var deleteList = function (list_id) {
+      var params = {
+        list_id: list_id
+      }
+      return $http.post("/api/deleteList", params).then(function (response) {
+        return response.data;
+      });
+    }
+
+    var createList = function (list_name, list_description) {
+      var params = {
+        list_name: list_name,
+        list_description: list_description
+      }
+      return $http.post("/api/createList", params).then(function (response) {
+        return response.data;
+      });
+    }
+
+    var logout = function () {
+      return $http.post("/api/logout").then(function (response) {
+        return response.data;
+      });
+    }
+
     return {
-    	getDashboard: getDashboard
+    	getDashboard: getDashboard,
+      deleteList: deleteList,
+      createList: createList,
+      logout: logout
     };
   }]);
 

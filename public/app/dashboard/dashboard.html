@@ -1,1 +1,16 @@
-{{lists}}
+<button class="btn btn-default" ng-click="createList()">Create New List</button>
+<button class="btn btn-default" ng-click="logout()">Logout</button>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4 panel panel-default" ng-repeat="list in lists">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <button class="btn btn-default" ng-click="openList(list.list_id)">Open</div>
+                    <button class="btn btn-default" ng-click="deleteList(list.list_id)">Delete</div>
+                    List: {{list.list_name}}
+                    Description: {{list.list_description}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

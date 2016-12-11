@@ -41,7 +41,7 @@ var login = function (username, password, crypto, tools, sql, _, sessions, res) 
 	});
 }
 
-var logout = function (username, token, _, sessions) {
+var logout = function (username, token, _, sessions, res) {
 	_.remove(sessions, function (session) {
 		return session.username == username && session.token == token;
 	});

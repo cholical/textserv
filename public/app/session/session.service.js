@@ -86,6 +86,14 @@
       	user_id = $cookies.get('user_id');
 	}
 
+	var logout = function () {
+		$cookies.remove('sessionUsername');
+		$cookies.remove('sessionToken');
+		$cookies.remove('firstName');
+		$cookies.remove('lastName');
+		$cookies.remove('user_id');
+	}
+
     return {
     	saveSession: saveSession,
     	getUserId: getUserId,
@@ -98,7 +106,8 @@
     	setFirstName: setFirstName,
     	getLastName: getLastName,
     	setLastName: setLastName,
-    	setCredentials: setCredentials
+    	setCredentials: setCredentials,
+    	logout: logout
     };
 
   }]);

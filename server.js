@@ -56,9 +56,9 @@ app.post('/api/createList', function (req, res) {
 	var token = req.get("textserv-session-token");
 	var user_id = req.get("textserv-session-user-id");
 	var list_name = req.body.list_name;
-	var listDescription = req.body.listDescription;
+	var list_description = req.body.list_description;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
-		dashboard.createList(user_id, list_name, listDescription, tools, sql, _, res);
+		dashboard.createList(user_id, list_name, list_description, tools, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
@@ -143,7 +143,7 @@ app.post('/api/getMessages', function (req, res) {
 app.post('/api/logout', function (req, res) {
 	var username = req.get("textserv-session-username");
 	var token = req.get("textserv-session-token");
-	home.logout(username, token, _, sessions);
+	home.logout(username, token, _, sessions, res);
 });
 
 app.get('*', function(req, res) {

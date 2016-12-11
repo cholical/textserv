@@ -23,7 +23,7 @@
         controller: 'messagesCtrl'
       })
       .state('list', {
-        url: '/list',
+        url: '/list/:list_id/',
         templateUrl: 'app/list/list.html',
         controller: 'listCtrl'
       })
