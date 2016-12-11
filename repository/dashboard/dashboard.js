@@ -34,7 +34,7 @@ var createList = function (user_id, list_name, list_description, tools, sql, _, 
 }
 
 var deleteList = function (user_id, list_id, sql, _, res) {
-	var query = "DELETE FROM lists WHERE list_id = '" + list_id + "' AND user_id = '" + user_id + "'; DELETE FROM listpeople WHERE list_id = '" + list_id + "';";
+	var query = "DELETE FROM lists WHERE list_id = '" + list_id + "' AND user_id = '" + user_id + "';";
 	//Does not delete from the people table so it is possible for a person to not be in any list
 	sql.query(query, function (err, recordset) {
 		console.log("Deleting list");
@@ -42,8 +42,17 @@ var deleteList = function (user_id, list_id, sql, _, res) {
 			console.log(query);
 			console.log(err);
 		} else {
-			res.send({
-				status: 200
+			query = "DELETE FROM listpeople WHERE list_id = '" + list_id + "';";
+			sql.query(query, function (err, recordset) {
+				console.log("Deleting list pt 2");
+				if (err) {
+					console.log(query);
+					console.log(err);
+				} else {
+					res.send({
+						status: 200
+					});
+				}
 			});
 		}
 	});

@@ -1,13 +1,3 @@
-create database textserv;
-use textserv;
-create table Users 
-(
-	user_id INT PRIMARY KEY AUTO_INCREMENT,
-	username VARCHAR(255),
-	password VARCHAR(255),
-	first_name VARCHAR(255),
-	last_name VARCHAR(255)
-);
 create table Lists 
 (
 	list_id INT PRIMARY KEY AUTO_INCREMENT,

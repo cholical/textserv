@@ -30,3 +30,8 @@ body {
 .home-align-right-custom {
 	text-align: right;
 }
+
+h3
+{
+	color: green;
+}
