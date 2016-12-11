@@ -1,14 +1,16 @@
 var addPerson = function (list_id, first_name, last_name, number, tools, sql, _, res) {
-	var escapedFirstName = tools.escapeString(escapedFirstName);
-	var escapedLastName = tools.escapeString(escapedLastName);
-	var firstQuery = "INSERT INTO people (first_name, last_name, number) VALUES ('" + escapedFirstName + "', '" + escapedLastName + "', '" + number + "'); SELECT LAST_INSERT_ID();";
+	var escapedFirstName = tools.escapeString(first_name);
+	var escapedLastName = tools.escapeString(last_name);
+	var firstQuery = "INSERT INTO people (first_name, last_name, number) VALUES ('" + escapedFirstName + "', '" + escapedLastName + "', '" + number + "');";
 	sql.query(firstQuery, function (err, firstRecordSet) {
 		console.log("Adding person");
 		if (err) {
 			console.log(query);
 			console.log(err);
 		} else {
-			var newPersonId = firstRecordSet[0].last_insert_id;
+			console.log("REQUIRED PLACE");
+			console.dir(firstRecordSet);
+			var newPersonId = firstRecordSet.insertId;
 			var secondQuery = "INSERT INTO listPeople (list_id, person_id) VALUES ('" + list_id + "', '" + newPersonId + "');";
 			sql.query(secondQuery, function (err, secondRecordset) {
 				if (err) {

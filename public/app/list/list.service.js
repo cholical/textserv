@@ -15,8 +15,31 @@
   		});
   	}
 
+  	var savePerson = function (list_id, first_name, last_name, number) {
+  		var params = {
+  			list_id: list_id,
+  			first_name: first_name,
+  			last_name: last_name,
+  			number: number
+  		}
+  		return $http.post("/api/addPerson", params).then(function (response) {
+  			return response.data;
+  		});
+  	}
+
+  	var deletePerson = function (person_id) {
+  		var params = {
+  			person_id: person_id
+  		}
+  		return $http.post("/api/deletePerson", params).then(function (response) {
+  			return response.data;
+  		});
+  	}
+
     return {
-    	openList: openList
+    	openList: openList,
+    	savePerson: savePerson,
+    	deletePerson: deletePerson
     };
   }]);
 
