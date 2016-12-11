@@ -85,7 +85,28 @@ var openList = function (user_id, list_id, sql, _, res) {
 	});
 }
 
+//###
+var sendMessage = function (user_id, list_id, message_body, date, tools, sql, _, res) {
+	var escapedMessageBody = tools.escapeString(messageBody);
+	var date = new date(); //need verify 
+	var query = "INSERT INTO messages (user_id, list_id, message_body, date) VALUES ('" + user_id + "', '" + "list_id"+escapedMessageBody+ "', '" + date+ "');";
+	sql.query(query, function (err, recordset) {
+		console.log("Adding new message");
+		if (err) {
+			console.log(query);
+			console.log(err);
+		} else {
+			res.send({
+				status: 200
+			})
+		}
+	});
+}
+
 module.exports.getDashboard = getDashboard;
 module.exports.createList = createList;
 module.exports.deleteList = deleteList;
 module.exports.openList = openList;
+//###
+module.exports.sendMessage = sendMessage;
+
