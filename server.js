@@ -121,9 +121,12 @@ app.post('/api/sendMessage', function (req, res) {
 	var token = req.get("textserv-session-token");
 	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
+	console.log("Am I getting a list id");
+	console.log(list_id);
 	var message_body = req.body.message_body;
+	console.log(message_body);
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
-		twilioSend.sendToList(list_id, user_id, body, tools, sql, _, twilio, res);
+		twilioSend.sendToList(list_id, user_id, message_body, tools, sql, _, twilio, res);
 	} else {
 		res.sendStatus(403);
 	}

@@ -55,22 +55,14 @@
 
 		//###
 		$scope.sendMessage = function (list_id) { //need implemented 
-			console.log("check in controller")
 			var modalInstance = $uibModal.open({
 		        templateUrl: 'app/newMessage/newMessage.html',
 		        controller: 'newMessageCtrl',
+		        resolve: {
+		        	list_id: list_id
+		        },
 		        size: 'md'
 		    });
-
-		      modalInstance.result.then(function (success) {
-		     	if (success) {
-		    		dashboardSvc.getDashboard().then(function (data) {
-					 	if (data.status == 200) {
-					 		$scope.lists = data.lists;
-					 	}
-					 });
-		     	}
-		     });
 		}
 
 	}]);
