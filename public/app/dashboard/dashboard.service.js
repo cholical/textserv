@@ -38,11 +38,11 @@
     }
 
     //###
-     var sendMessage = function (message_body) {
+    var sendMessage = function (message_body, list_id) {
       var params = {
+        list_id: list_id,
         message_body: message_body
       }
-      console.log("check in dashboardSvc")
       return $http.post("/api/sendMessage", params).then(function (response) {
         return response.data;
       });
