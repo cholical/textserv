@@ -31,7 +31,22 @@ body {
 	text-align: right;
 }
 
-h3
+h1
 {
-	color: green;
+	color: white;
+	text-align: center;
+}
+
+h3{
+	color: white;
+}
+
+.side-bar-hr {
+	border-color: green;
+}
+
+a, a:hover, a:link, a:visited, a:active
+{
+	text-decoration: none;
+	color: white;
 }

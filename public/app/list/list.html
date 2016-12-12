@@ -1,36 +1,36 @@
-<h1 class = "list-group-item list-group-item-action list-group-item-warning" style="text-align:center">
+<h1>
 	{{list_name}}
 </h1>
 <h3>
 	{{list_description}}
 </h3>
-<button ng-click="addPerson()" class="btn btn-default">Add Person</button>
+<button ng-click="addPerson()" class="btn btn-default list-button">Add Person</button>
+<hr class="side-bar-hr">
 <div class="col-md-12">
-	<table class="table table-striped table-bordered">
-		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Phone Number</th>
-			<th>Save/Delete</th>
+	<table class="list-table">
+		<tr class="list-tr">
+			<th class="list-th">First Name</th>
+			<th class="list-th">Last Name</th>
+			<th class="list-th">Phone Number</th>
+			<th class="list-th">Save/Delete</th>
 		</tr>
-		<tr ng-repeat="person in people">
-			<td>
+		<tr class="list-tr" ng-repeat="person in people">
+			<td class="list-td">
 				<span ng-if="!person.unsaved">{{person.first_name}}</span>
 				<span ng-if="person.unsaved"><input type="text" class="form-control" ng-model="person.first_name"></span>
 			</td>
-			<td>
+			<td class="list-td">
 				<span ng-if="!person.unsaved">{{person.last_name}}</span>
 				<span ng-if="person.unsaved"><input type="text" class="form-control" ng-model="person.last_name"></span>
 			</td>
-			<td>
+			<td class="list-td">
 				<span ng-if="!person.unsaved">{{person.number}}</span>
 				<span ng-if="person.unsaved"><input type="text" class="form-control" ng-model="person.number"></span>
 			</td>
-			<td>
+			<td class="list-td">
 				<button ng-if="!person.unsaved" class="btn btn-default" ng-click="deletePerson(person.person_id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 				<button ng-if="person.unsaved" class="btn btn-default" ng-click="savePerson(person.first_name, person.last_name, person.number)"><i class="fa fa-check" aria-hidden="true"></i></button>
 			</td>
 		</tr>
 	</table>
-
 </div>
