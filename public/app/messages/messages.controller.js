@@ -4,12 +4,14 @@
 	var app;
 
 	app = angular.module('textserv');
-	app.controller('messagesCtrl', ['$scope', '$state', 'messageSvc', function messagesCtrl($scope, $state,messageSvc){
+	app.controller('messagesCtrl', ['$scope', '$state', 'messagesSvc', function messagesCtrl($scope, $state,messagesSvc){
 		
-
-
-
-
+		messagesSvc.getMessages().then(function (data) {
+			if (data.status == 200) {
+				$scope.messages = data.messages; 
+				console.log("Message Data retrieved");
+			}
+		});
 
 
 	}]);

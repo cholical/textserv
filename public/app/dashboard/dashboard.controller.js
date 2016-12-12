@@ -12,6 +12,7 @@
 		});
 
 		$scope.openList = function (list_id) {
+			console.log("test openList")
 			$state.go('list', {
 				list_id: list_id
 			});
@@ -35,6 +36,7 @@
 		}
 
 		$scope.deleteList = function (list_id) {
+
 			dashboardSvc.deleteList(list_id).then(function (data) {
 				dashboardSvc.getDashboard().then(function (data) {
 					if (data.status == 200) {
@@ -63,6 +65,12 @@
 		        },
 		        size: 'md'
 		    });
+		}
+		//getMessage 
+		$scope.getMessages = function () {
+			console.log("test getMessages")
+			$state.go('messages', {
+			});
 		}
 
 	}]);
