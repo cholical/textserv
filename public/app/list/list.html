@@ -10,7 +10,7 @@
             </button>
             <hr class="side-bar-hr">
             <div class="side-bar-options">
-            	<a ui-sref="messages" ng-click="getMessages()"> Messages </a>   
+            	<a ui-sref="messages"> Messages </a>   
             </div>     
             <hr class="side-bar-hr">
             <button class="side-bar-options" ng-click="logout()">
@@ -20,13 +20,14 @@
     </div>
 </div>
 <div class="col-md-10">
-	<h1>
-		{{list_name}}
-	</h1>
-	<h3>
+	<div class="list-page-title">
+        {{list_name}}
+    </div>
+    <hr class="side-bar-hr">
+	<div class="list-page-description">
 		{{list_description}}
-	</h3>
-	<hr class="side-bar-hr">
+	</div>
+	<button class="btn btn-default" ng-click="addPerson();">Add Person</button>
 	<table class="table list-table">
 		<tr class="list-tr">
 			<th class="list-th">First Name</th>

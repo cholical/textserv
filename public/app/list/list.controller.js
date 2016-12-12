@@ -4,7 +4,7 @@
 	var app;
 
 	app = angular.module('textserv');
-	app.controller('listCtrl', ['$scope', '$state', '$stateParams', 'listSvc', function listCtrl($scope, $state, $stateParams, listSvc){
+	app.controller('listCtrl', ['$scope', '$state', '$stateParams', 'listSvc', 'dashboardSvc', 'sessionSvc', function listCtrl($scope, $state, $stateParams, listSvc, dashboardSvc, sessionSvc){
 
 		listSvc.openList($stateParams.list_id).then(function (data) {
 			if (data.status == 200) {
