@@ -1,13 +1,45 @@
-<div class="modal-content">
-	<div class="modal-heading">
-		Create message 
-	</div>
-	<div class="modal-body">
-		<input type="text" class="form-control" placeholder="List Name" ng-model="listName">
-		<textarea class="form-control" placeholder="List Description" ng-model="listDescription"></textarea>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-default" ng-click="close()">Close</button>
-		<button class="btn btn-default" ng-click="createList()">Create</button>
-	</div>
+<div class="col-md-2 side-bar">
+    <div class="panel panel-default no-border">
+        <div class="panel-body side-bar-panel">
+            <div class="side-bar-title">
+                TextServ
+            </div>
+            <hr class="side-bar-hr">
+            <button class="side-bar-options">
+                <a href="../#!/dashboard">Lists</a>
+            </button>
+            <hr class="side-bar-hr">
+            <button class="side-bar-options">
+                <a href="../#!/messages">Messages</a>
+            </button>
+            <hr class="side-bar-hr">
+            <button class="side-bar-options" ng-click="logout()">
+                Sign Out
+            </button>
+        </div>
+    </div>
+</div>
+<div class="col-md-10">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="list-table">
+                <tr class="list-tr">
+                    <th class="list-th">Sent To</th>
+                    <th class="list-th">Date Sent</th>
+                    <th class="list-th">Text</th>
+                </tr>
+                <tr class="list-tr" ng-repeat="message in messages"> 
+                    <td class="list-td">
+                        {{message.list_name}}
+                    </td>
+                    <td class="list-td">
+                        {{message.date}}
+                    </td>
+                    <td class="list-td">
+                        {{message.message_body}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

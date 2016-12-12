@@ -72,7 +72,9 @@ var openList = function (user_id, list_id, sql, _, res) {
 				if (err) {
 					console.log(query);
 					console.log(err);
+
 				} else {
+
 					res.send({
 						status: 200,
 						list_name: firstRecordset[0].list_name,
@@ -102,6 +104,22 @@ var sendMessage = function (user_id, list_id, message_body, date, tools, sql, _,
 		}
 	});
 }
+//message 
+var getMessages = function (user_id, sql, _, res) {
+	var query = "SELECT messages.message_id, messages.list_id, messages.message_body, messages.date, lists.list_name FROM messages INNER JOIN lists ON messages.list_id = lists.list_id WHERE messages.user_id = '" + user_id + "';";
+	sql.query(query, function (err, recordset) {
+		console.log("#######");
+		if (err) {
+			console.log(query);
+			console.log(err);
+		} else {
+			res.send({
+				status: 200,
+				messages: recordset
+			})
+		}
+	});
+}
 
 module.exports.getDashboard = getDashboard;
 module.exports.createList = createList;
@@ -109,4 +127,6 @@ module.exports.deleteList = deleteList;
 module.exports.openList = openList;
 //###
 module.exports.sendMessage = sendMessage;
+//###
+module.exports.getMessages = getMessages;
 

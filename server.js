@@ -82,7 +82,9 @@ app.post('/api/openList', function (req, res) {
 	var user_id = req.get("textserv-session-user-id");
 	var list_id = req.body.list_id;
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
+
 		dashboard.openList(user_id, list_id, sql, _, res);
+
 	} else {
 		res.sendStatus(403);
 	}
@@ -137,7 +139,7 @@ app.post('/api/getMessages', function (req, res) {
 	var token = req.get("textserv-session-token");
 	var user_id = req.get("textserv-session-user-id");
 	if (tools.verifySession(username, token, user_id, _, sessions)) {
-		messages.getMessages(user_id, sql, _, res);
+		dashboard.getMessages(user_id, sql, _, res);
 	} else {
 		res.sendStatus(403);
 	}
