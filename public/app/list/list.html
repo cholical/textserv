@@ -1,12 +1,32 @@
-<h1>
-	{{list_name}}
-</h1>
-<h3>
-	{{list_description}}
-</h3>
-<hr class="side-bar-hr">
-<button ng-click="addPerson()" class="btn btn-default list-button">Add Person</button>
-<div class="col-md-12">
+<div class="col-md-2 side-bar">
+    <div class="panel panel-default no-border">
+        <div class="panel-body side-bar-panel">
+            <div class="side-bar-title">
+                TextServ
+            </div>
+            <hr class="side-bar-hr">
+            <button class="side-bar-options">
+                <a ui-sref="dashboard">Lists</a>
+            </button>
+            <hr class="side-bar-hr">
+            <div class="side-bar-options">
+            	<a ui-sref="messages" ng-click="getMessages()"> Messages </a>   
+            </div>     
+            <hr class="side-bar-hr">
+            <button class="side-bar-options" ng-click="logout()">
+                Sign Out
+            </button>
+        </div>
+    </div>
+</div>
+<div class="col-md-10">
+	<h1>
+		{{list_name}}
+	</h1>
+	<h3>
+		{{list_description}}
+	</h3>
+	<hr class="side-bar-hr">
 	<table class="table list-table">
 		<tr class="list-tr">
 			<th class="list-th">First Name</th>
@@ -33,7 +53,4 @@
 			</td>
 		</tr>
 	</table>
-	<button class="btn btn-default list-button">
-		<a ui-sref="dashboard" id="return">Return</a>
-	</button>
 </div>

@@ -54,5 +54,14 @@
 			})
 		}
 
+		$scope.logout = function () {
+			dashboardSvc.logout().then(function (data) {
+				if (data.status == 200) {
+					sessionSvc.logout();
+					$state.go('home');
+				}
+			});
+		}
+
 	}]);
 }());

@@ -6,12 +6,12 @@
             </div>
             <hr class="side-bar-hr">
             <button class="side-bar-options">
-                <a href="../#!/dashboard">Lists</a>
+                <a ui-sref="dashboard">Lists</a>
             </button>
             <hr class="side-bar-hr">
-            <button class="side-bar-options">
-                <a href="../#!/messages">Messages</a>
-            </button>
+            <div class="side-bar-options">
+            <a ui-sref="messages" ng-click="getMessages()"> Messages </a>   
+            </div>     
             <hr class="side-bar-hr">
             <button class="side-bar-options" ng-click="logout()">
                 Sign Out
@@ -19,17 +19,21 @@
         </div>
     </div>
 </div>
-<h1 style="text-align: left">
-    Messages
-</h1>
-<hr class="side-bar-hr">
 <div class="col-md-10">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list-page-title">
+                Messages
+            </div>
+            <hr class="side-bar-hr">
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <table class="table list-table">
                 <tr class="list-tr">
                     <th class="list-th">Sent To</th>
-                    <th class="list-th">Text</th>
+                    <th class="list-th">Message</th>
                 </tr>
                 <tr class="list-tr" ng-repeat="message in messages"> 
                     <td class="list-td">

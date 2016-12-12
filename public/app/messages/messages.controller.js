@@ -4,7 +4,7 @@
 	var app;
 
 	app = angular.module('textserv');
-	app.controller('messagesCtrl', ['$scope', '$state', 'messagesSvc', function messagesCtrl($scope, $state,messagesSvc){
+	app.controller('messagesCtrl', ['$scope', '$state', 'messagesSvc', 'dashboardSvc', 'sessionSvc', function messagesCtrl($scope, $state, messagesSvc, dashboardSvc, sessionSvc){
 		
 		messagesSvc.getMessages().then(function (data) {
 			if (data.status == 200) {
@@ -13,6 +13,14 @@
 			}
 		});
 
+		$scope.logout = function () {
+			dashboardSvc.logout().then(function (data) {
+				if (data.status == 200) {
+					sessionSvc.logout();
+					$state.go('home');
+				}
+			});
+		}
 
 	}]);
 }());
