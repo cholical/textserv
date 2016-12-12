@@ -42,6 +42,7 @@ var sendToList = function (list_id, user_id, message_body, tools, sql, _, twilio
 					console.log(query);
 					console.log(err);
 				} else {
+					console.log("Everything should be sent fine");
 					res.send({
 						status: 200
 					});

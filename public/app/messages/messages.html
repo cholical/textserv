@@ -22,18 +22,14 @@
 <div class="col-md-10">
     <div class="row">
         <div class="col-md-12">
-            <table class="list-table">
+            <table class="table list-table">
                 <tr class="list-tr">
                     <th class="list-th">Sent To</th>
-                    <th class="list-th">Date Sent</th>
                     <th class="list-th">Text</th>
                 </tr>
                 <tr class="list-tr" ng-repeat="message in messages"> 
                     <td class="list-td">
                         {{message.list_name}}
-                    </td>
-                    <td class="list-td">
-                        {{message.date}}
                     </td>
                     <td class="list-td">
                         {{message.message_body}}
