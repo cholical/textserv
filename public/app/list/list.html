@@ -1,11 +1,11 @@
-f<h1>
+<h1>
 	{{list_name}}
 </h1>
 <h3>
 	{{list_description}}
 </h3>
-<button ng-click="addPerson()" class="btn btn-default list-button">Add Person</button>
 <hr class="side-bar-hr">
+<button ng-click="addPerson()" class="btn btn-default list-button">Add Person</button>
 <div class="col-md-12">
 	<table class="table list-table">
 		<tr class="list-tr">
@@ -33,4 +33,7 @@ f<h1>
 			</td>
 		</tr>
 	</table>
+	<button class="btn btn-default list-button">
+		<a ui-sref="dashboard" id="return">Return</a>
+	</button>
 </div>

@@ -50,3 +50,8 @@ a, a:hover, a:link, a:visited, a:active
 	text-decoration: none;
 	color: white;
 }
+
+#return, return:hover, return:link, return:visited, return:active{
+	text-decoration: none;
+	color: black;
+}

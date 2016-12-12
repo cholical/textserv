@@ -1,6 +1,8 @@
 .list-th{
 	border: solid gray 2px !important;
 	border-bottom-color: green !important;
+	color: black;
+	background-color: white;
 }
 
 .list-td{
